@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Link } from 'react-router-dom';
+
 import './App.css';
+import Button from './components/shared/Button'
+import HomeMenu from './components/HomeMenu'
+import QuickSteps from './components/QuickSteps';
+import Layout from './components/Layout'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <div class="flex flex-grow">
+        <div class="w-1/2 flex flex-col items-start justify-center">
+          <h1 style={{margin: "0px"}}>The 7 Minute Workout</h1>
+          <h3 style={{marginTop: "0px", marginBottom: "50px"}}>That you can do at home</h3>
+          <Link to={`/go`}>
+            <Button text="Let's Go!" />
+          </Link>
+          
+        </div>
+        <div class="w-1/2 flex flex-col justify-center items-end">
+          <HomeMenu />
+        </div>
+      </div>
+      <div className="row flex-grow">
+        <QuickSteps />
+      </div>
+    </Layout>
   );
 }
 

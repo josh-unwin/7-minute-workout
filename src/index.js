@@ -1,12 +1,20 @@
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { createBrowserHistory as history } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import App from './App';
+import Exercise from './components/Exercise';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router history={history}>
+      <Switch>
+        <Route exact={true} path="/" component={App} />
+        <Route path="/go" render={() => <Exercise />} />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
