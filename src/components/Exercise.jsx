@@ -3,36 +3,66 @@ import { FaRunning, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import Layout from './Layout'
+import Countdown from '../components/Countdown'
 
-const Exercise = ({exerciseTitle}) => {
-  const [timer, setTimer] = useState(30);
+import { exercises } from '../exercises'
 
-  function startCountdown() {
-    timer > 0 && setTimeout(() => setTimer(timer - 1), 1000);
+const Exercise = (props) => {
+  const [currentExercise, setCurrentExercise] = useState(0);
+  const [initialCountdown, setInitialCountdown] = useState(3);
+  const [status, setStatus] = useState("off");
+  console.log(currentExercise);
 
-    if (timer === 0) {
-      // setTimeout(() => {alert("time up!")}, 1000)
+  useEffect(() => {
+    if (initialCountdown === 0) {
+      setStatus('running')
+    } else {
+      initialCountdown > 0 && setTimeout(() => setInitialCountdown(initialCountdown - 1), 1000);
     }
-  }
-
-  useEffect(startCountdown, [timer])
+  }, [initialCountdown])
 
   return (
     <Layout>
       <Link to="/">
         <div className="absolute top-0 left-0 m-6 flex items-center"><FaArrowLeft className="mr-2" /> Stop</div>
       </Link>
-      <div className="flex w-full">
-        <div className="w-1/2 flex justify-center items-center">
-          <div className="m-3 border-8 border-blueGrey text-6xl rounded-full w-64 h-64 flex justify-center items-center">
-            {timer.toString()}
+
+      {/* DISPLAY OF INITIAL COUNTDOWN, WHEN status = false */}
+      {status === "off" &&
+        <div className="text-xl flex flex-col justify-center">
+          <span>Get ready!</span>
+          <span className="text-8xl">{initialCountdown}</span>
+        </div>
+      }
+
+      {/* DISPLAY AND START EXERCISES WHEN status = true */}
+      {status === "running" &&
+        <>
+        <div className="flex w-100 m-16">
+          <div className="w-1/2 flex justify-center items-center">
+            <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
+                       status={status} setStatus={setStatus} timerLength={5} />
+          </div>
+          <div className="w-1/2 flex flex-col justify-center items-center">
+            <span className="text-4xl">{exercises[currentExercise].title}</span>
+            <span><FaRunning className="my-5" style={{fontSize: "250px"}} /></span>
           </div>
         </div>
-        <div className="w-1/2 justify-center items-center">
-          <span className="text-4xl">{exerciseTitle}</span>
-          <span><FaRunning className="my-5" style={{fontSize: "250px"}} /></span>
+        <div className="flex flex-col justify-center items-end h-auto w-full">
+          <div className="text-xl text-yellow">Next up</div>
+          <div className="text-3xl text-blueGrey">{exercises[currentExercise + 1].title}</div>
         </div>
-      </div>
+        </>
+      }
+
+      {/* DISPLAY OF BREAK/REST PERIOD, WHEN status = break */}
+      {status === "break" &&
+        <div className="text-xl flex flex-col justify-center items-center">
+          <span className="mb-3">Next exercise coming up!</span>
+          <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
+          status={status} setStatus={setStatus} timerLength={3} />
+        </div>
+      }
     </Layout>
   )
 }

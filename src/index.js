@@ -7,12 +7,13 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import Exercise from './components/Exercise';
 
-ReactDOM.render(
+
+ReactDOM.render( 
   <React.StrictMode>
     <Router history={history}>
       <Switch>
         <Route exact={true} path="/" component={App} />
-        <Route path="/go" render={() => <Exercise />} />
+        <Route path="/go" render={(props) => <Exercise { ...props } />} />
       </Switch>
     </Router>
   </React.StrictMode>,
