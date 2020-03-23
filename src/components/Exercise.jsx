@@ -8,6 +8,7 @@ import Countdown from '../components/Countdown'
 import { exercises } from '../exercises'
 
 const Exercise = (props) => {
+  const restPeriod = props.location.restPeriod;
   const [currentExercise, setCurrentExercise] = useState(0);
   const [initialCountdown, setInitialCountdown] = useState(3);
   const [status, setStatus] = useState("off");
@@ -60,7 +61,7 @@ const Exercise = (props) => {
         <div className="text-xl flex flex-col justify-center items-center">
           <span className="mb-3">Next exercise coming up!</span>
           <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-          status={status} setStatus={setStatus} timerLength={3} />
+          status={status} setStatus={setStatus} timerLength={restPeriod} />
         </div>
       }
     </Layout>
