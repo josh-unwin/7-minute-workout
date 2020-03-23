@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { FaRunning, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import styled from 'styled-components';
 import Layout from './Layout'
 import Countdown from '../components/Countdown'
+import CountdownCircle from '../components/CountdownCircle'
 
 import { exercises } from '../exercises'
 
 const Exercise = (props) => {
-  const restPeriod = props.location.restPeriod;
+  let restPeriod = props.location.restPeriod;
+
+  if (!restPeriod) {
+    restPeriod = 10
+  }
+
   const [currentExercise, setCurrentExercise] = useState(0);
-  const [initialCountdown, setInitialCountdown] = useState(3);
+  // TODO: Set initialCountdown back to 3
+  const [initialCountdown, setInitialCountdown] = useState(0);
   const [status, setStatus] = useState("off");
   console.log(currentExercise);
 
@@ -41,8 +48,10 @@ const Exercise = (props) => {
         <>
         <div className="flex w-100 m-16">
           <div className="w-1/2 flex justify-center items-center">
-            <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-                       status={status} setStatus={setStatus} timerLength={5} />
+            <CountdownCircle>
+              <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
+                        status={status} setStatus={setStatus} timerLength={5} />
+            </CountdownCircle>
           </div>
           <div className="w-1/2 flex flex-col justify-center items-center">
             <span className="text-4xl">{exercises[currentExercise].title}</span>
@@ -51,17 +60,30 @@ const Exercise = (props) => {
         </div>
         <div className="flex flex-col justify-center items-end h-auto w-full">
           <div className="text-xl text-yellow">Next up</div>
-          <div className="text-3xl text-blueGrey">{exercises[currentExercise + 1].title}</div>
+          <div className="text-3xl text-blueGrey">
+            {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "This is the last one, nearly there!"}
+          </div>
         </div>
         </>
       }
 
       {/* DISPLAY OF BREAK/REST PERIOD, WHEN status = break */}
       {status === "break" &&
-        <div className="text-xl flex flex-col justify-center items-center">
-          <span className="mb-3">Next exercise coming up!</span>
-          <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-          status={status} setStatus={setStatus} timerLength={restPeriod} />
+        <div className="flex flex-col justify-center items-center">
+          <span className="mb-3 text-xl">Next exercise coming up!</span>
+          <span className="mb-3 text-3xl text-yellow">{exercises[currentExercise].title}</span>
+          <CountdownCircle>
+            <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
+                      status={status} setStatus={setStatus} timerLength={restPeriod} />
+          </CountdownCircle>
+        </div>
+      }
+
+      {/* DISPLAY OF FINISHED PAGE, WHEN status = complete */}
+      {status === "complete" &&
+        <div className="flex flex-col justify-center items-center">
+          <span className="mb-3 text-3xl text-yellow">Finished!</span>
+          <span className="mb-3 text-xl">Nice work! You must be thirsty, go grab a drink!</span>
         </div>
       }
     </Layout>
