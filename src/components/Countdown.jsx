@@ -3,26 +3,31 @@ import { exercises } from '../exercises';
 import styled from 'styled-components';
 
 const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLength, status }) => {
-  const CountdownDiv = styled.div`
-  transition: 1s;
-  border-color: #7CAFC4;
-
-  &:hover {
-    border-color: #7AE581;
-  }
-  `
-
   const [timer, setTimer] = useState(timerLength)
+
+  function playSounds() {
+    const ding = new Audio('./audio-ding.wav');
+    const chime = new Audio('./audio-chime.wav');
+
+    if (timer === 3 || timer === 2 || timer === 1) {
+      ding.play()
+    }
+
+    if (timer === 0 && status === 'running') {
+      chime.play()
+    }     
+  }
   
   function startCountdown() {
-    console.log('current exercise: ', currentExercise, 'exercise length: ', exercises.length);
+    // While timer is not 0 reduce timer by 1 each second.
     timer > 0 && setTimeout(() => setTimer(timer - 1), 1000);
 
+    playSounds();
+
+    // Sets status of app based on timer
     if (timer === 0) {
       if (status === 'running') {
-        console.log('in running if statement');
         setCurrentExercise(currentExercise + 1)
-        console.log('before check: current exercise: ', currentExercise, 'exercise length: ', exercises.length);
         currentExercise === (exercises.length - 1) ? setStatus('complete') : setStatus('break')
       } else if (status === 'break') {
           setStatus("running")
@@ -30,8 +35,10 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
     }
   }
 
+  // When the timer state changes, start the countdown
   useEffect(startCountdown, [timer])
 
+  // When the currentExercise changes, set the timer to correct length
   useEffect(() => {
     setTimer(timerLength)
   }, [currentExercise])

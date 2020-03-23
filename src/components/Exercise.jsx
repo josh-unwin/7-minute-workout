@@ -48,7 +48,7 @@ const Exercise = (props) => {
         <>
         <div className="flex w-100 m-16">
           <div className="w-1/2 flex justify-center items-center">
-            <CountdownCircle>
+            <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                         status={status} setStatus={setStatus} timerLength={5} />
             </CountdownCircle>
@@ -72,7 +72,7 @@ const Exercise = (props) => {
         <div className="flex flex-col justify-center items-center">
           <span className="mb-3 text-xl">Next exercise coming up!</span>
           <span className="mb-3 text-3xl text-yellow">{exercises[currentExercise].title}</span>
-          <CountdownCircle>
+          <CountdownCircle timerLength={restPeriod} status={status}>
             <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                       status={status} setStatus={setStatus} timerLength={restPeriod} />
           </CountdownCircle>
