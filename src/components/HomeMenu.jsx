@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaTwitter, FaFacebookF } from 'react-icons/fa';
+import { Link } from 'react-router-dom'
 
 const HomeMenuDiv = styled.div`
   display: flex;
@@ -34,7 +35,9 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
   return (
     <HomeMenuDiv>
       <div>
-        <a  className="text-2xl" href="/">The Exercises</a>
+        <Link to="/exercises">
+          <a className="text-2xl" href="/">The Exercises</a>
+        </Link>
       </div>
       <div>
         Rest period: <span className={restPeriod === 10 ? 'selected' : ''} onClick={() => {setRestPeriod(10)}}>10</span> |&nbsp;

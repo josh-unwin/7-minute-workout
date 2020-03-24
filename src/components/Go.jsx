@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { FaRunning, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import Layout from './Layout'
-import Countdown from '../components/Countdown'
-import CountdownCircle from '../components/CountdownCircle'
+import Countdown from './Countdown'
+import CountdownCircle from './CountdownCircle'
 
 import { exercises } from '../exercises'
 
-const Exercise = (props) => {
+const Go = (props) => {
   let restPeriod = props.location.restPeriod;
 
   if (!restPeriod) {
@@ -90,4 +89,4 @@ const Exercise = (props) => {
   )
 }
 
-export default Exercise
+export default Go
