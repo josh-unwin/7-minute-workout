@@ -14,7 +14,7 @@ const HomeMenuDiv = styled.div`
     margin: 0.5em;
     font-size: 1.4em;
 
-    a, span {
+    .link {
       transition: 0.2s ease;
     }
 
@@ -23,7 +23,7 @@ const HomeMenuDiv = styled.div`
       color: #CCE3EC;
     }
 
-    a:hover, span:hover {
+    .link:hover, .link:hover {
       font-size: 1.8rem;
       color: #CCE3EC;
       cursor: pointer
@@ -36,19 +36,19 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
     <HomeMenuDiv>
       <div>
         <Link to="/exercises">
-          <a className="text-2xl" href="/">The Exercises</a>
+          <a className="link text-2xl" href="/">The Exercises</a>
         </Link>
       </div>
       <div>
-        Rest period: <span className={restPeriod === 10 ? 'selected' : ''} onClick={() => {setRestPeriod(10)}}>10</span> |&nbsp;
-                     <span className={restPeriod === 15 ? 'selected' : ''} onClick={() => {setRestPeriod(15)}}>15</span> seconds
+        Rest period: <span className={`link ${restPeriod === 10 ? 'selected' : ''}`} onClick={() => {setRestPeriod(10)}}>10</span> |&nbsp;
+                     <span className={`link ${restPeriod === 15 ? 'selected' : ''}`} onClick={() => {setRestPeriod(15)}}>15</span> seconds
       </div>
       <div className="flex mb-0">
-        <a className="pr-2" href="/"><FaTwitter /></a>
-        <a href="/"><FaFacebookF /></a>
+        <a className="pr-2 link" href="/"><FaTwitter /></a>
+        <a className="link" href="/"><FaFacebookF /></a>
       </div>
       <div style={{marginTop: "0"}}>
-        <span className="text-sm hover:text-lg" href="/">Built by joshunwin</span>
+        <span className="text-sm" href="/">Built by joshunwin</span>
       </div>
     </HomeMenuDiv>
   )
