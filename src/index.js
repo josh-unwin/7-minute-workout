@@ -16,7 +16,7 @@ ReactDOM.render(
       <Switch>
         <Route exact={true} path="/" component={App} />
         <Route path="/go" render={(props) => <Go { ...props } />} />
-        <Route path="/exercises" component={<Exercises />} />
+        <Route path="/exercises" component={Exercises} />
       </Switch>
     </Router>
   </React.StrictMode>,

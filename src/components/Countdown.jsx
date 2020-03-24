@@ -38,7 +38,7 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
   useEffect(startCountdown, [timer])
 
   // When the currentExercise changes, set the timer to correct length
-  useEffect((timerLength) => {
+  useEffect(() => {
     setTimer(timerLength)
   }, [currentExercise])
 

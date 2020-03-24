@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { FaRunning, FaArrowLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaRunning } from 'react-icons/fa';
 import Layout from './Layout'
 import Countdown from './Countdown'
 import CountdownCircle from './CountdownCircle'
+import ReturnButton from './shared/ReturnButton'
 
 import { exercises } from '../exercises'
 
@@ -30,10 +30,7 @@ const Go = (props) => {
 
   return (
     <Layout>
-      <Link to="/">
-        <div className="absolute top-0 left-0 m-6 flex items-center"><FaArrowLeft className="mr-2" /> Stop</div>
-      </Link>
-
+      <ReturnButton text="Stop" />
       {/* DISPLAY OF INITIAL COUNTDOWN, WHEN status = false */}
       {status === "off" &&
         <div className="text-xl flex flex-col justify-center">
