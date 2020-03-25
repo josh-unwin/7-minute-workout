@@ -2,7 +2,6 @@
   "name": "7-minute-workout",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://josh-unwin.github.io/7-minute-workout/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
