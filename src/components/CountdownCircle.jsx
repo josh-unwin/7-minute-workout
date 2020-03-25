@@ -2,18 +2,31 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CountdownCircleDiv = styled.div`
-  transition: 1s;
-  border-color: #7CAFC4;
+  animation-name: pulse;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  border-style: ${props => props.borderStyle};
 
-  &:hover {
-    border-color: #7AE581;
+  @keyframes pulse {
+    0% {border-color: #7CAFC4;}
+    50% {border-color: ${props => props.borderColor};}
+    100% {border-color: #7CAFC4;}
   }
 `
 
 const CountdownCircle = ({children, timerLength, status}) => {
-  console.log('from circle: ', status, timerLength);
+  let borderColor = '#7AE581'
+  let borderStyle = 'solid'
+
+  if (status === "break") {
+    borderColor = '#FFAD05'
+    borderStyle = 'dotted'
+  }
+
   return (
-    <CountdownCircleDiv className="m-3 border-8 text-8xl rounded-full w-84 h-84 flex justify-center items-center">
+    <CountdownCircleDiv className="m-3 border-8 text-8xl rounded-full w-84 h-84 flex justify-center items-center" 
+                        borderColor={borderColor} borderStyle={borderStyle} >
       {children}
     </CountdownCircleDiv>
   )

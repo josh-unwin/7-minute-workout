@@ -6,6 +6,7 @@ import CountdownCircle from './CountdownCircle'
 import ReturnButton from './shared/ReturnButton'
 import TwitterShare from '../components/shared/TwitterShare'
 import FacebookShare from '../components/shared/FacebookShare'
+import ProgressBarVertical from '../components/shared/ProgressBarVertical'
 
 import { exercises } from '../exercises'
 
@@ -49,13 +50,14 @@ const Go = (props) => {
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                         status={status} setStatus={setStatus} timerLength={30} />
             </CountdownCircle>
+            <ProgressBarVertical />
           </div>
           <div className="w-1/2 flex flex-col justify-center items-center">
             <span className="text-4xl">{exercises[currentExercise].title}</span>
             <span><FaRunning className="my-5" style={{fontSize: "250px"}} /></span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-end h-auto w-full">
+        <div className="flex flex-col justify-center items-end h-auto w-full my-4">
           <div className="text-xl text-yellow">Next up</div>
           <div className="text-3xl text-blueGrey">
             {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "This is the last one, nearly there!"}

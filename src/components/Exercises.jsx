@@ -10,11 +10,12 @@ const Exercises = () => {
     <Layout>
       <ReturnButton text="Back" />
       <div className="flex flex-col">
-        <div className="w-full h-32">
-
-        </div>
         <div className="w-full">
-          <div className="text-5xl text-left">Exercises</div>
+          <div className="mt-32 mb-12 text-left flex flex-col">
+            <span className="text-5xl">Exercises</span>
+            <span className="">All you need is enough space to lay down, a chair and a clear wall space.</span>
+            <span className="">Below is each excercise in order.</span>
+          </div>
           {exercises.map((exercise, index) => {
             return (
             <div className={`h-64 flex py-2 my-6 border-blueGrey ${index === (exercises.length - 1) ? '' : 'border-b'}`}>
