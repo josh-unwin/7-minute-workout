@@ -1,40 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 const ProgressBarFullDiv = styled.div`
-  .progress {
-    animation-name: progress;
-    animation-duration: 30s;
-    animation-timing-function: linear;
+  .progress1 {
     bottom: 0;
+    transition: width 4s;
+    transition-timing-function: linear;
   }
 
-  .bar {
-    height: 6px;
-  }
-
-  @keyframes progress {
-    0% {
-      width: 0;
-      background-color: #FFAD05;
-    }
-    50% {
-      width: 50%;
-      background-color: #FCFF4B;
-    }
-    100% {
-      width: 100%;
-      background-color: #7AE581;
-    }
+  .bar1 {
+    height: 3px;
+    bottom: 0;
   }
 `
 
-const ProgressBarFull = () => {
+const ProgressBarFull = ({percentageComplete, setPercentageComplete, duration, setDuration, endDuration}) => {
+
+  function totalDuration() {
+    duration < endDuration && setTimeout(() => {
+      setDuration(duration + 1);
+      setPercentageComplete(Math.round(duration / endDuration * 100))
+    }, 1000);
+  }
+
+  useEffect(totalDuration, [duration])
+
+  console.log(percentageComplete);
+
   return (
-    <ProgressBarFullDiv className="ml-4 relative w-full">
-      <div className="bar absolute w-full bg-blueGrey">
+    <ProgressBarFullDiv className="my-5 relative w-full text-left">
+      <span className='text-xs text-left'>Total progress</span>
+      <div className="bar1 absolute w-full bg-blueGrey">
       </div>
-      <div className="progress bar absolute">
+      <div className="progress1 bar1 absolute bg-yellow" style={{width: `${percentageComplete}%`}}>
       </div>
     </ProgressBarFullDiv>
   )

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaRunning, FaTwitter, FaFacebookF } from 'react-icons/fa';
+import { FaRunning } from 'react-icons/fa';
 import Layout from './Layout'
 import Countdown from './Countdown'
 import CountdownCircle from './CountdownCircle'
@@ -7,6 +7,7 @@ import ReturnButton from './shared/ReturnButton'
 import TwitterShare from '../components/shared/TwitterShare'
 import FacebookShare from '../components/shared/FacebookShare'
 import ProgressBarVertical from '../components/shared/ProgressBarVertical'
+import ProgressBarFull from '../components/shared/ProgressBarFull'
 
 import { exercises } from '../exercises'
 
@@ -20,11 +21,12 @@ const Go = (props) => {
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
   const [initialCountdown, setInitialCountdown] = useState(3);
-  const [totalDuration, setTotalDuration] = useState((exercises.length * 30) + ((exercises.length - 2) * restPeriod));
-  console.log(totalDuration);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
-
+  const [endDuration, setEndDuration] = useState(restPeriod === 15 ? 470 : 420);
+  const [duration, setDuration] = useState(0)
+  const [percentageComplete, setPercentageComplete] = useState(0)
+  
   useEffect(() => {
     if (currentExercise === exercises.length - 1 || currentExercise === exercises.length - 2) {
       setExerciseLength(15)
@@ -69,6 +71,8 @@ const Go = (props) => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-end h-auto w-full my-4">
+          <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
+                          percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
           <div className="text-xl text-yellow">Next up</div>
           <div className="text-3xl text-blueGrey">
             {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "Last one, nearly there!"}
@@ -86,6 +90,8 @@ const Go = (props) => {
             <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                       status={status} setStatus={setStatus} timerLength={restPeriod} />
           </CountdownCircle>
+          <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
+                            percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
         </div>
       }
 

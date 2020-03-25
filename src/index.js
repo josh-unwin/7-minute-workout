@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import Go from './components/Go';
 import Exercises from './components/Exercises'
-
+import WhatIsThis from './components/WhatIsThis';
 
 ReactDOM.render( 
   <React.StrictMode>
@@ -17,6 +17,7 @@ ReactDOM.render(
         <Route exact={true} path="/" component={App} />
         <Route path="/go" render={(props) => <Go { ...props } />} />
         <Route path="/exercises" component={Exercises} />
+        <Route path="/what-is-this" component={WhatIsThis} />
       </Switch>
     </Router>
   </React.StrictMode>,

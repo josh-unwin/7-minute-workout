@@ -38,7 +38,12 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
     <HomeMenuDiv>
       <div>
         <Link to="/exercises">
-          <a className="link text-2xl" href="/">The Exercises</a>
+          <span className="link text-2xl" href="/">The Exercises</span>
+        </Link>
+      </div>
+      <div>
+        <Link to="/what-is-this">
+          <span className="link text-2xl" href="/">What is this?</span>
         </Link>
       </div>
       <div className="text-right">
