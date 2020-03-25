@@ -16,7 +16,7 @@ function App() {
         <div className="flex flex-grow mb-40 w-full">
           <div className="w-1/2 flex flex-col items-start justify-center">
             <h1 className="m-0 text-left">The 7 Minute Workout</h1>
-            <h3 style={{marginTop: "0px", marginBottom: "50px"}}>That you can do at home</h3>
+            <h3 className="-mt-2 mb-16 italic">That you can do at home</h3>
             <Link to={{pathname: '/go', restPeriod: restPeriod}}>
               <Button text="Let's Go!" />
             </Link>

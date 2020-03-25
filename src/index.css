@@ -8544,6 +8544,10 @@ video {
   font-size: 8rem;
 }
 
+.text-10xl {
+  font-size: 10rem;
+}
+
 .hover\:text-xs:hover {
   font-size: 0.75rem;
 }
@@ -8590,6 +8594,10 @@ video {
 
 .hover\:text-8xl:hover {
   font-size: 8rem;
+}
+
+.hover\:text-10xl:hover {
+  font-size: 10rem;
 }
 
 .italic {

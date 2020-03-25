@@ -36,7 +36,7 @@ const Go = (props) => {
       {status === "off" &&
         <div className="text-xl flex flex-col justify-center">
           <span>Get ready!</span>
-          <span className="text-8xl">{initialCountdown}</span>
+          <span className="text-10xl">{initialCountdown}</span>
         </div>
       }
 

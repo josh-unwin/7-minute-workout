@@ -4,6 +4,7 @@ module.exports = {
       fontSize: {
         '7xl': '5rem',
         '8xl': '8rem',
+        '10xl': '10rem',
       },
       spacing: {
         '72': '18rem',
