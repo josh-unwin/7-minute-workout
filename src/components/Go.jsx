@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { FaRunning } from 'react-icons/fa';
+import { FaRunning, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import Layout from './Layout'
 import Countdown from './Countdown'
 import CountdownCircle from './CountdownCircle'
 import ReturnButton from './shared/ReturnButton'
+import TwitterShare from '../components/shared/TwitterShare'
+import FacebookShare from '../components/shared/FacebookShare'
 
 import { exercises } from '../exercises'
 
@@ -16,21 +18,20 @@ const Go = (props) => {
 
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
-  const [initialCountdown, setInitialCountdown] = useState(0);
-  const [status, setStatus] = useState("off");
-  console.log(currentExercise);
+  const [initialCountdown, setInitialCountdown] = useState(3);
+  const [status, setStatus] = useState("complete");
 
   useEffect(() => {
     if (initialCountdown === 0) {
       setStatus('running')
     } else {
-      initialCountdown > 0 && setTimeout(() => setInitialCountdown(initialCountdown - 1), 1000);
+      // initialCountdown > 0 && setTimeout(() => setInitialCountdown(initialCountdown - 1), 1000);
     }
   }, [initialCountdown])
 
   return (
     <Layout>
-      <ReturnButton text="Stop" />
+      <ReturnButton text={status === "complete" ? "Back" : "Stop"} />
       {/* DISPLAY OF INITIAL COUNTDOWN, WHEN status = false */}
       {status === "off" &&
         <div className="text-xl flex flex-col justify-center">
@@ -46,7 +47,7 @@ const Go = (props) => {
           <div className="w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-                        status={status} setStatus={setStatus} timerLength={5} />
+                        status={status} setStatus={setStatus} timerLength={30} />
             </CountdownCircle>
           </div>
           <div className="w-1/2 flex flex-col justify-center items-center">
@@ -78,8 +79,15 @@ const Go = (props) => {
       {/* DISPLAY OF FINISHED PAGE, WHEN status = complete */}
       {status === "complete" &&
         <div className="flex flex-col justify-center items-center">
-          <span className="mb-3 text-3xl text-yellow">Finished!</span>
+          <span className="mb-6 text-5xl text-yellow">Finished!</span>
           <span className="mb-3 text-xl">Nice work! You must be thirsty, go grab a drink!</span>
+          <div className="flex flex-col mb-0 text-blueGrey text-sm">
+            <span>If you know someone who'll enjoy this, feel free to share!</span>
+            <div className="flex justify-center mt-3 text-3xl">
+              <TwitterShare />
+              <FacebookShare />
+            </div>
+          </div>
         </div>
       }
     </Layout>

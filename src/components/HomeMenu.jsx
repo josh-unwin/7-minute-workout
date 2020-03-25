@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaTwitter, FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
+
+import TwitterShare from '../components/shared/TwitterShare'
+import FacebookShare from '../components/shared/FacebookShare'
 
 const HomeMenuDiv = styled.div`
   display: flex;
@@ -44,11 +46,11 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
                      <span className={`link ${restPeriod === 15 ? 'selected' : ''}`} onClick={() => {setRestPeriod(15)}}>15</span> seconds
       </div>
       <div className="flex mb-0">
-        <a className="pr-2 link" href="/"><FaTwitter /></a>
-        <a className="link" href="/"><FaFacebookF /></a>
+        <TwitterShare />
+        <FacebookShare />
       </div>
       <div style={{marginTop: "0"}}>
-        <span className="text-sm" href="/">Built by joshunwin</span>
+        <a className="text-sm" href="https://www.joshunwin.com" target="_blank" rel="noopener noreferrer">Built by joshunwin</a>
       </div>
     </HomeMenuDiv>
   )
