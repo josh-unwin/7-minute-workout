@@ -41,7 +41,7 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
           <a className="link text-2xl" href="/">The Exercises</a>
         </Link>
       </div>
-      <div>
+      <div className="text-right">
         Rest period: <span className={`link ${restPeriod === 10 ? 'selected' : ''}`} onClick={() => {setRestPeriod(10)}}>10</span> |&nbsp;
                      <span className={`link ${restPeriod === 15 ? 'selected' : ''}`} onClick={() => {setRestPeriod(15)}}>15</span> seconds
       </div>

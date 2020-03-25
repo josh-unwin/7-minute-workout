@@ -19,13 +19,13 @@ const Go = (props) => {
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
   const [initialCountdown, setInitialCountdown] = useState(3);
-  const [status, setStatus] = useState("complete");
+  const [status, setStatus] = useState("off");
 
   useEffect(() => {
     if (initialCountdown === 0) {
       setStatus('running')
     } else {
-      // initialCountdown > 0 && setTimeout(() => setInitialCountdown(initialCountdown - 1), 1000);
+      initialCountdown > 0 && setTimeout(() => setInitialCountdown(initialCountdown - 1), 1000);
     }
   }, [initialCountdown])
 
@@ -68,7 +68,7 @@ const Go = (props) => {
       {status === "break" &&
         <div className="flex flex-col justify-center items-center">
           <span className="mb-3 text-xl">Next exercise coming up!</span>
-          <span className="mb-3 text-3xl text-yellow">{exercises[currentExercise].title}</span>
+          <span className="mb-3 text-4xl text-yellow">{exercises[currentExercise].title}</span>
           <CountdownCircle timerLength={restPeriod} status={status}>
             <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                       status={status} setStatus={setStatus} timerLength={restPeriod} />
