@@ -9,6 +9,10 @@ const ProgressBarVerticalDiv = styled.div`
     bottom: 0;
   }
 
+  .bar {
+    width: 11px;
+  }
+
   @keyframes progress {
     0% {
       height: 0;
@@ -28,9 +32,9 @@ const ProgressBarVerticalDiv = styled.div`
 const ProgressBarVertical = () => {
   return (
     <ProgressBarVerticalDiv className=" ml-4 relative h-64">
-      <div className="absolute h-full w-2 bg-blueGrey">
+      <div className="bar absolute h-full bg-blueGrey">
       </div>
-      <div className="progress absolute w-2">
+      <div className="progress bar absolute">
       </div>
     </ProgressBarVerticalDiv>
   )

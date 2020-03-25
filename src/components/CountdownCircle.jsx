@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 const CountdownCircleDiv = styled.div`
@@ -16,18 +16,17 @@ const CountdownCircleDiv = styled.div`
 `
 
 const CountdownCircle = ({children, timerLength, status}) => {
-  let borderColor = '#7AE581'
+  let borderColor = '#FCFF4B'
   let borderStyle = 'solid'
 
   if (status === "break") {
-    borderColor = '#FFAD05'
-    borderStyle = 'dotted'
+    borderStyle = 'double'
   }
 
   return (
-    <CountdownCircleDiv className="m-3 border-8 text-8xl rounded-full w-84 h-84 flex justify-center items-center" 
+    <CountdownCircleDiv className="m-3 border-8 rounded-full w-84 h-84 flex justify-center items-center text-8xl" 
                         borderColor={borderColor} borderStyle={borderStyle} >
-      {children}
+                          {children}
     </CountdownCircleDiv>
   )
 }
