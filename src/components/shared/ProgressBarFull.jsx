@@ -1,44 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ProgressBarVerticalDiv = styled.div`
+const ProgressBarFullDiv = styled.div`
   .progress {
     animation-name: progress;
     animation-duration: 30s;
     animation-timing-function: linear;
-    animation-fill-mode: forwards;
     bottom: 0;
   }
 
   .bar {
-    width: 11px;
+    height: 6px;
   }
 
   @keyframes progress {
     0% {
-      height: 0;
+      width: 0;
       background-color: #FFAD05;
     }
     50% {
-      height: 50%;
+      width: 50%;
       background-color: #FCFF4B;
     }
     100% {
-      height: 100%;
+      width: 100%;
       background-color: #7AE581;
     }
   }
 `
 
-const ProgressBarVertical = (props) => {
+const ProgressBarFull = () => {
   return (
-    <ProgressBarVerticalDiv className="ml-4 relative h-64" timerLength={props.timerLength}>
-      <div className="bar absolute h-full bg-blueGrey">
+    <ProgressBarFullDiv className="ml-4 relative w-full">
+      <div className="bar absolute w-full bg-blueGrey">
       </div>
       <div className="progress bar absolute">
       </div>
-    </ProgressBarVerticalDiv>
+    </ProgressBarFullDiv>
   )
 }
 
-export default ProgressBarVertical
+export default ProgressBarFull

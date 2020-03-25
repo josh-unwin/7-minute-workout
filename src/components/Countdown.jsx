@@ -27,7 +27,13 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
     if (timer === 0) {
       if (status === 'running') {
         setCurrentExercise(currentExercise + 1)
-        currentExercise === (exercises.length - 1) ? setStatus('complete') : setStatus('break')
+        if (currentExercise === (exercises.length - 1)) {
+          setStatus('complete')
+         } else if (currentExercise === (exercises.length - 2)) {
+           setStatus('running')
+         } else { 
+           setStatus('break')
+         }
       } else if (status === 'break') {
           setStatus("running")
       }

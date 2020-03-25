@@ -16,11 +16,22 @@ const Go = (props) => {
   if (!restPeriod) {
     restPeriod = 10
   }
-
+  
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
   const [initialCountdown, setInitialCountdown] = useState(3);
+  const [totalDuration, setTotalDuration] = useState((exercises.length * 30) + ((exercises.length - 2) * restPeriod));
+  console.log(totalDuration);
   const [status, setStatus] = useState("off");
+  const [exerciseLength, setExerciseLength] = useState(30)
+
+  useEffect(() => {
+    if (currentExercise === exercises.length - 1 || currentExercise === exercises.length - 2) {
+      setExerciseLength(15)
+    } else {
+      setExerciseLength(30)
+    }
+  })
 
   useEffect(() => {
     if (initialCountdown === 0) {
@@ -48,9 +59,9 @@ const Go = (props) => {
           <div className="w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-                        status={status} setStatus={setStatus} timerLength={30} />
+                        status={status} setStatus={setStatus} timerLength={exerciseLength} />
             </CountdownCircle>
-            <ProgressBarVertical />
+            <ProgressBarVertical timerLength={exerciseLength} />
           </div>
           <div className="w-1/2 flex flex-col justify-center items-center">
             <span className="text-4xl">{exercises[currentExercise].title}</span>
@@ -60,7 +71,7 @@ const Go = (props) => {
         <div className="flex flex-col justify-center items-end h-auto w-full my-4">
           <div className="text-xl text-yellow">Next up</div>
           <div className="text-3xl text-blueGrey">
-            {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "This is the last one, nearly there!"}
+            {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "Last one, nearly there!"}
           </div>
         </div>
         </>
