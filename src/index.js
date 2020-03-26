@@ -16,7 +16,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render( 
   <React.StrictMode>
-    <Router history={history}>
+    <Router>
       <Switch>
         <Route exact={true} path="/" component={App} />
         <Route path="/go" render={(props) => <Go { ...props } />} />

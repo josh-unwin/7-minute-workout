@@ -25,8 +25,6 @@ const ProgressBarFull = ({percentageComplete, setPercentageComplete, duration, s
 
   useEffect(totalDuration, [duration])
 
-  console.log(percentageComplete);
-
   return (
     <ProgressBarFullDiv className="md:my-5 relative w-full text-left">
       <span className='text-xs text-left'>Total progress</span>

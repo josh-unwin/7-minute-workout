@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { exercises } from '../exercises';
 
 const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLength, status }) => {
@@ -44,7 +44,7 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
   useEffect(startCountdown, [timer])
 
   // When the currentExercise changes, set the timer to correct length
-  useEffect(() => {
+  useReducer((timerLength) => {
     setTimer(timerLength)
   }, [currentExercise])
 

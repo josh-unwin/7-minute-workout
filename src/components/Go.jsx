@@ -23,7 +23,7 @@ const Go = (props) => {
   const [initialCountdown, setInitialCountdown] = useState(3);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
-  const [endDuration, setEndDuration] = useState(restPeriod === 15 ? 470 : 420);
+  const [endDuration] = useState(restPeriod === 15 ? 470 : 420);
   const [duration, setDuration] = useState(0)
   const [percentageComplete, setPercentageComplete] = useState(0)
   
@@ -33,7 +33,7 @@ const Go = (props) => {
     } else {
       setExerciseLength(30)
     }
-  })
+  },[currentExercise])
 
   useEffect(() => {
     if (initialCountdown === 0) {
@@ -57,7 +57,7 @@ const Go = (props) => {
       {/* DISPLAY AND START EXERCISES WHEN status = true */}
       {status === "running" &&
         <>
-        <div className="flex flex-col md:flex-row w-100 -mt-4 mx-6 mb-2 md:m-16">
+        <div className="flex flex-col md:flex-row w-100 -mt-8 mx-6 mb-2 md:m-16">
           <div className="md:w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
@@ -73,7 +73,7 @@ const Go = (props) => {
         <div className="flex flex-col justify-center items-end h-auto w-full md:my-4">
           <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
                           percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
-          <div className="text-xl text-yellow">Next up</div>
+          <div className="mt-1 text-xl text-yellow">Next up</div>
           <div className="text-3xl text-blueGrey">
             {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "Last one, nearly there!"}
           </div>
