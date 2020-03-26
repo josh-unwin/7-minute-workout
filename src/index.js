@@ -4,11 +4,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import ReactGA from 'react-ga';
 
 import App from './App';
 import Go from './components/Go';
 import Exercises from './components/Exercises'
 import WhatIsThis from './components/WhatIsThis';
+
+ReactGA.initialize('UA-161933519-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render( 
   <React.StrictMode>
