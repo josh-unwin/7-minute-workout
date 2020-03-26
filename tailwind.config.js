@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   variants: {
-    fontSize: ['hover']
+    fontSize: ['responsive', 'hover']
   },
   plugins: [],
 }

@@ -20,7 +20,7 @@ const Go = (props) => {
   
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
-  const [initialCountdown, setInitialCountdown] = useState(3);
+  const [initialCountdown, setInitialCountdown] = useState(0);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
   const [endDuration, setEndDuration] = useState(restPeriod === 15 ? 470 : 420);
@@ -57,20 +57,20 @@ const Go = (props) => {
       {/* DISPLAY AND START EXERCISES WHEN status = true */}
       {status === "running" &&
         <>
-        <div className="flex w-100 m-16">
-          <div className="w-1/2 flex justify-center items-center">
+        <div className="flex flex-col md:flex-row w-100 mt-0 mx-6 mb-2 md:m-16">
+          <div className="md:w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
                         status={status} setStatus={setStatus} timerLength={exerciseLength} />
             </CountdownCircle>
             <ProgressBarVertical timerLength={exerciseLength} />
           </div>
-          <div className="w-1/2 flex flex-col justify-center items-center">
+          <div className="md:w-1/2 flex flex-col justify-center items-center">
             <span className="text-4xl">{exercises[currentExercise].title}</span>
             <span><FaRunning className="my-5" style={{fontSize: "250px"}} /></span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-end h-auto w-full my-4">
+        <div className="flex flex-col justify-center items-end h-auto w-full md:my-4">
           <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
                           percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
           <div className="text-xl text-yellow">Next up</div>

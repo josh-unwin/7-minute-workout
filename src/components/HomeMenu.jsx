@@ -6,10 +6,6 @@ import TwitterShare from '../components/shared/TwitterShare'
 import FacebookShare from '../components/shared/FacebookShare'
 
 const HomeMenuDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
   div {
     color: #7CAFC4;
     transition: 0.2s ease;
@@ -35,7 +31,7 @@ const HomeMenuDiv = styled.div`
 
 const HomeMenu = ({restPeriod, setRestPeriod}) => {
   return (
-    <HomeMenuDiv>
+    <HomeMenuDiv className="flex flex-col md:items-end">
       <div>
         <Link to="/exercises">
           <span className="link text-2xl" href="/">The Exercises</span>
@@ -50,7 +46,7 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
         Rest period: <span className={`link ${restPeriod === 10 ? 'selected' : ''}`} onClick={() => {setRestPeriod(10)}}>10</span> |&nbsp;
                      <span className={`link ${restPeriod === 15 ? 'selected' : ''}`} onClick={() => {setRestPeriod(15)}}>15</span> seconds
       </div>
-      <div className="flex mb-0">
+      <div className="flex justify-center mb-0">
         <TwitterShare />
         <FacebookShare />
       </div>
