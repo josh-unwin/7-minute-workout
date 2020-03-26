@@ -20,7 +20,7 @@ const Go = (props) => {
   
   const [currentExercise, setCurrentExercise] = useState(0);
   // TODO: Set initialCountdown back to 3
-  const [initialCountdown, setInitialCountdown] = useState(0);
+  const [initialCountdown, setInitialCountdown] = useState(3);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
   const [endDuration, setEndDuration] = useState(restPeriod === 15 ? 470 : 420);
@@ -57,7 +57,7 @@ const Go = (props) => {
       {/* DISPLAY AND START EXERCISES WHEN status = true */}
       {status === "running" &&
         <>
-        <div className="flex flex-col md:flex-row w-100 mt-0 mx-6 mb-2 md:m-16">
+        <div className="flex flex-col md:flex-row w-100 -mt-4 mx-6 mb-2 md:m-16">
           <div className="md:w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
