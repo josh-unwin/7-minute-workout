@@ -9,11 +9,19 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
     const chime = new Audio('./audio-chime.wav');
 
     if (timer === 3 || timer === 2 || timer === 1) {
-      ding.play()
+      try {
+        ding.play()
+      } catch {
+        console.log("This browser doesn't support audio playback");
+      }
     }
 
     if (timer === 0 && status === 'running') {
-      chime.play()
+      try {
+        chime.play()
+      } catch {
+        console.log("This browser doesn't support audio playback");
+      }
     }     
   }
   
@@ -31,6 +39,7 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
           setStatus('complete')
          } else if (currentExercise === (exercises.length - 2)) {
            setStatus('running')
+           setTimer(15)
          } else { 
            setStatus('break')
          }

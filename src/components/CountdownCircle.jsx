@@ -24,7 +24,7 @@ const CountdownCircle = ({children, timerLength, status}) => {
   }
 
   return (
-    <CountdownCircleDiv className="md:m-3 border-8 rounded-full w-56 h-56 md:w-84 md:h-84 flex justify-center items-center text-8xl" 
+    <CountdownCircleDiv className="lg:m-3 border-8 rounded-full w-56 h-56 lg:w-84 lg:h-84 flex justify-center items-center text-8xl" 
                         borderColor={borderColor} borderStyle={borderStyle} >
                           {children}
     </CountdownCircleDiv>

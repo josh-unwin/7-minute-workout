@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory as history } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

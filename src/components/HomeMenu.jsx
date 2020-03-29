@@ -50,8 +50,9 @@ const HomeMenu = ({restPeriod, setRestPeriod}) => {
         <TwitterShare />
         <FacebookShare />
       </div>
-      <div style={{marginTop: "0"}}>
+      <div className="flex flex-col text-center md:text-right" style={{marginTop: "10px"}}>
         <a className="text-sm" href="https://www.joshunwin.com" target="_blank" rel="noopener noreferrer">Built by joshunwin</a>
+        <a className="text-sm" href="https://www.fiverr.com/workoutlabs" target="_blank" rel="noopener noreferrer">Graphics by workoutlabs</a>
       </div>
     </HomeMenuDiv>
   )
