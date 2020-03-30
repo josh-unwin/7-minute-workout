@@ -13,7 +13,7 @@ const LayoutDiv = styled.div`
 const Layout = ({ children }) => {
   return (
     <LayoutDiv className="App">
-      <div className="m-3 md:m-0 container h-full min-h-screen flex flex-col justify-center">
+      <div className="p-3 container h-full min-h-screen flex flex-col justify-center">
         {children}
       </div>
     </LayoutDiv>

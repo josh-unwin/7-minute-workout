@@ -23,7 +23,7 @@ const Go = (props) => {
   const [initialCountdown, setInitialCountdown] = useState(3);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
-  const [endDuration] = useState(restPeriod === 15 ? 525 : 470);
+  const [endDuration] = useState(restPeriod === 15 ? 525 : 468);
   const [duration, setDuration] = useState(0)
   const [percentageComplete, setPercentageComplete] = useState(0)
   
@@ -57,7 +57,7 @@ const Go = (props) => {
       {/* DISPLAY AND START EXERCISES WHEN status = true */}
       {status === "running" &&
         <>
-        <div className="flex flex-col lg:flex-row w-100 -mt-8 mx-6 mb-2 lg:m-16">
+        <div className="flex flex-col lg:flex-row -mt-2 mx-6 mb-2 lg:m-16">
           <div className="lg:w-1/2 flex justify-center items-center">
             <CountdownCircle timerLength={restPeriod} status={status}>
               <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
@@ -67,12 +67,14 @@ const Go = (props) => {
           </div>
           <div className="lg:w-1/2 flex flex-col justify-center items-center">
             <span className="text-4xl">{exercises[currentExercise].title}</span>
-            <ReactSVG
-             src={exercises[currentExercise].img}
-             beforeInjection={svg => {
-               svg.setAttribute('style', 'width: 350px')
-             }}
-             />
+            <span style={{height: '350px'}}>
+              <ReactSVG
+              src={exercises[currentExercise].img}
+              beforeInjection={svg => {
+                svg.setAttribute('style', 'width: 350px')
+              }}
+              />
+             </span>
             {/* <span className="font-normal text-sm">{exercises[currentExercise].description}</span> */}
           </div>
         </div>
@@ -92,10 +94,24 @@ const Go = (props) => {
         <div className="flex flex-col justify-center items-center">
           <span className="mb-3 text-xl">Next exercise coming up!</span>
           <span className="mb-3 text-4xl text-yellow">{exercises[currentExercise].title}</span>
-          <CountdownCircle timerLength={restPeriod} status={status}>
-            <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
-                      status={status} setStatus={setStatus} timerLength={restPeriod} />
-          </CountdownCircle>
+          <div className="flex flex-col lg:flex-row mx-6 mb-2 lg:m-16 w-full">
+            <div className="lg:w-1/2 flex justify-center lg:justify-end items-center md:mr-4">
+              <CountdownCircle timerLength={restPeriod} status={status}>
+                <Countdown currentExercise={currentExercise} setCurrentExercise={setCurrentExercise} 
+                          status={status} setStatus={setStatus} timerLength={restPeriod} />
+              </CountdownCircle>
+            </div>
+            <div className="lg:w-1/2 flex justify-center lg:justify-start items-center md:ml-4 mt-4 md:mt-0">
+              <span style={{height: '250px'}}>
+              <ReactSVG
+              src={exercises[currentExercise].img}
+              beforeInjection={svg => {
+                svg.setAttribute('style', 'width: 250px')
+              }}
+              />
+              </span>
+            </div>
+          </div>
           <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
                             percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
         </div>

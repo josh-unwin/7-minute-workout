@@ -7,22 +7,29 @@ const Countdown = ({ currentExercise,  setCurrentExercise, setStatus, timerLengt
   function playSounds() {
     const ding = new Audio('./audio-ding.wav');
     const chime = new Audio('./audio-chime.wav');
-
+    
     if (timer === 3 || timer === 2 || timer === 1) {
-      try {
-        ding.play()
-      } catch {
-        console.log("This browser doesn't support audio playback");
+      let dingPromise = ding.play();
+  
+      if (dingPromise !== undefined) {
+        dingPromise.catch(error => {
+              console.log("Sorry, no sound effects in Safari/iOS!");
+          }).then(() => {
+          });
       }
+        // ding.play()
     }
 
     if (timer === 0 && status === 'running') {
-      try {
-        chime.play()
-      } catch {
-        console.log("This browser doesn't support audio playback");
+      let chimePromise = chime.play();
+
+      if (chimePromise !== undefined) {
+        chimePromise.catch(error => {
+          console.log("Sorry, no sound effects in Safari/iOS!");
+        }).then(() => {
+          });
       }
-    }     
+    }  
   }
   
   function startCountdown() {

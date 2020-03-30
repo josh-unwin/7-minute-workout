@@ -6,12 +6,18 @@ import Button from './components/shared/Button'
 import HomeMenu from './components/HomeMenu'
 import QuickSteps from './components/QuickSteps';
 import Layout from './components/Layout'
+import SafariWarning from './components/shared/SafariWarning'
 
 function App() {
   const [restPeriod, setRestPeriod] = useState(10)
+  if (window.navigator.vendor.toLowerCase().includes('apple')) {
+    console.log(window.navigator.vendor.toLowerCase());
+    console.log(window.navigator.vendor); 
+  }
 
   return (
     <Layout>
+      {window.navigator.vendor.toLowerCase().includes('apple') && <SafariWarning />}
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col md:flex-row flex-grow mb-6 md:mb-40 w-full">
           <div className="border-b border-blueGrey pb-4 md:border-0 md:w-1/2 flex flex-col md:items-start justify-center">
