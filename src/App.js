@@ -38,6 +38,7 @@ function App() {
             <Link to={{pathname: '/go', restPeriod: restPeriod}}>
               <Button text="Let's Go!" />
             </Link>
+            <span className="text-blueGrey text-xs pt-1 italic">(you'll need a chair and a wall space!)</span>
           </div>
           <div className="md:w-1/2 flex flex-col justify-center items-center md:items-end">
             <HomeMenu restPeriod={restPeriod} setRestPeriod={setRestPeriod} />
