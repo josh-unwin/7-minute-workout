@@ -9,6 +9,18 @@ import Layout from './components/Layout'
 import SafariWarning from './components/shared/SafariWarning'
 
 function App() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+
   const [restPeriod, setRestPeriod] = useState(10)
   if (window.navigator.vendor.toLowerCase().includes('apple')) {
     console.log(window.navigator.vendor.toLowerCase());

@@ -19,7 +19,6 @@ const Go = (props) => {
   }
   
   const [currentExercise, setCurrentExercise] = useState(0);
-  // TODO: Set initialCountdown back to 3
   const [initialCountdown, setInitialCountdown] = useState(3);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
