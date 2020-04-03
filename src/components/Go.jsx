@@ -19,7 +19,7 @@ const Go = (props) => {
   }
   
   const [currentExercise, setCurrentExercise] = useState(0);
-  const [initialCountdown, setInitialCountdown] = useState(3);
+  const [initialCountdown, setInitialCountdown] = useState(0);
   const [status, setStatus] = useState("off");
   const [exerciseLength, setExerciseLength] = useState(30)
   const [endDuration] = useState(restPeriod === 15 ? 525 : 468);
@@ -80,9 +80,16 @@ const Go = (props) => {
         <div className="flex flex-col justify-center items-end h-auto w-full lg:my-4">
           <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
                           percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
-          <div className="mt-1 text-xl text-yellow">Next up</div>
-          <div className="text-3xl text-blueGrey">
-            {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "Last one, nearly there!"}
+          <div className="flex w-full">
+            <div className="w-1/2 flex justify-start items-start">
+              <div className="mt-1 text-xl md:text-2xl text-blueGrey text-left w-full">Exercise <span className="text-yellow">{currentExercise + 1}</span> / 13</div>
+            </div>
+            <div className="w-1/2 flex justify-center items-end flex-col">
+              <div className="mt-1 text-xl text-yellow">Next up</div>
+              <div className="text-3xl text-blueGrey">
+                {exercises[currentExercise + 1] ? exercises[currentExercise + 1].title : "Last one, nearly there!"}
+              </div>
+            </div>
           </div>
         </div>
         </>
@@ -113,6 +120,7 @@ const Go = (props) => {
           </div>
           <ProgressBarFull duration={duration} setDuration={setDuration} endDuration={endDuration} 
                             percentageComplete={percentageComplete} setPercentageComplete={setPercentageComplete} />
+          <div className="mt-1 text-xl md:text-2xl text-blueGrey text-left w-full">Exercise <span className="text-yellow">{currentExercise + 1}</span> / 13</div>
         </div>
       }
 
